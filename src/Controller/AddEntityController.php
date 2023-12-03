@@ -33,7 +33,7 @@ class AddEntityController extends AbstractController
             //return $this->redirectToRoute('/add/quote');
         }
 
-        return $this->render('./addMovie.twig', [
+        return $this->render('./addEntity.twig', [
             'form' => $form,
         ]);
     }
@@ -57,7 +57,7 @@ class AddEntityController extends AbstractController
             //return $this->redirectToRoute('/add/quote');
         }
 
-        return $this->render('./addMovie.twig', [
+        return $this->render('./addEntity.twig', [
             'form' => $form,
         ]);
     }

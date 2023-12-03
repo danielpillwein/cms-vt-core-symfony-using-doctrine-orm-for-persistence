@@ -1,0 +1,75 @@
+* {
+    font-family: "Segoe UI";
+    margin: 0;
+    padding:0;
+}
+
+nav {
+    background-color: #3498db;
+    height: 41px;
+}
+
+nav a {
+    color: #fff;
+    background-color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0 10px 0 10px;
+}
+
+nav a:hover {
+    background-color: #216588;
+}
+
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 41px);
+    margin: 0;
+}
+
+/* Styles for the form container */
+#movie, #quote {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Styles for form labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Styles for form input fields */
+input,select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Styles for the Save button */
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hover effect for the Save button */
+button:hover {
+    background-color: #2980b9;
+}

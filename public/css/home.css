@@ -1,0 +1,92 @@
+* {
+    font-family: "Segoe UI";
+    margin: 0;
+    padding: 0;
+}
+
+.quotes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav {
+    background-color: #3498db;
+    height: 41px;
+    display: flex;
+    flex-direction: row;
+}
+
+nav a {
+    color: #fff;
+    background-color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0 10px 0 10px;
+}
+
+nav a:hover {
+    background-color: #216588;
+}
+
+.quote {
+    width: 250px;
+    aspect-ratio: 1;
+
+    border: 2px solid #ddd;
+    border-radius: 20px;
+
+    margin: 10px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #fff;
+}
+
+.quote > * {
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.quote a {
+    color: #e74c3c;
+    text-decoration: none;
+    padding-bottom: 0;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.quote-detail {
+    margin: auto 0 auto 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quote-text {
+    font-weight: bold;
+}
+
+.movie-detail {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    color: #555;
+    border-top: 2px solid #ddd;
+}
+
+.movie-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
