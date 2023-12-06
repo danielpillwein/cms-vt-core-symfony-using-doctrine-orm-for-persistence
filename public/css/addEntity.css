@@ -34,6 +34,15 @@ nav a:hover {
     margin: 0;
 }
 
+.title{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+
+    position: relative;
+    top: 20vh;
+}
+
 /* Styles for the form container */
 #movie, #quote {
     width: 300px;

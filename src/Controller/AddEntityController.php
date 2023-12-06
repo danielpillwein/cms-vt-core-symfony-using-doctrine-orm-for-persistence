@@ -35,6 +35,7 @@ class AddEntityController extends AbstractController
 
         return $this->render('./addEntity.twig', [
             'form' => $form,
+            'title' => "Add Movie"
         ]);
     }
 
@@ -59,6 +60,7 @@ class AddEntityController extends AbstractController
 
         return $this->render('./addEntity.twig', [
             'form' => $form,
+            'title' => "Add Quote"
         ]);
     }
 }
