@@ -11,10 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\MovieType;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AddEntityController extends AbstractController
 {
-    #[Route('/add-movie', name: 'add_movie')]
+    #[Route(
+        path:'/add-movie',
+        name: 'add_movie')]
     public function newMovie(Request $request, EntityManagerInterface $manager): Response
     {
         $movie = new Movie();
@@ -29,8 +32,6 @@ class AddEntityController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('home');
-
-            //return $this->redirectToRoute('/add/quote');
         }
 
         return $this->render('./addEntity.twig', [
