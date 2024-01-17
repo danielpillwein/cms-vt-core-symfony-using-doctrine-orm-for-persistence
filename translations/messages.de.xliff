@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="de" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Add Movie</source>
+                <target>Film hinzufügen</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Add Quote</source>
+                <target>Zitat hinzufügen</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Delete Quote</source>
+                <target>Zitat löschen</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Switch to German</source>
+                <target>Zu Englisch wechseln</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Back</source>
+                <target>Zurück</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Movie</source>
+                <target>Film</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Quote</source>
+                <target>Zitat</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Character</source>
+                <target>Person</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Save Quote</source>
+                <target>Zitat speichern</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Release Year</source>
+                <target>Erscheinungsjahr</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Save Movie</source>
+                <target>Film speichern</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

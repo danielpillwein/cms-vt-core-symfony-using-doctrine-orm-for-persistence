@@ -7,6 +7,7 @@ use App\Entity\Quote;
 use App\Form\QuoteType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,14 +16,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AddEntityController extends AbstractController
 {
-    #[Route(
-        path:'/add-movie',
-        name: 'add_movie')]
-    public function newMovie(Request $request, EntityManagerInterface $manager): Response
+    #[Route(path: [
+        'en' => '/add-movie',
+        'de' => '/film-hinzufuegen'
+    ],
+        name: 'add_movie',
+    )]
+    public function newMovie(Request $request, EntityManagerInterface $manager, TranslatorInterface $translator): Response
     {
         $movie = new Movie();
 
-        $form = $this->createForm(MovieType::class,$movie);
+        $form = $this->createForm(MovieType::class, $movie);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -36,16 +40,24 @@ class AddEntityController extends AbstractController
 
         return $this->render('./addEntity.twig', [
             'form' => $form,
-            'title' => "Add Movie"
+            'title' => $translator->trans("Add Movie"),
+            "_locale" => $request->getLocale()
         ]);
     }
 
-    #[Route('/add-quote', name: 'add_quote')]
-    public function newQuote(Request $request, EntityManagerInterface $manager): Response
+    #[Route(
+        path: [
+            'en' => '/add-quote',
+            'de' => '/zitat-hinzufuegen'
+        ],
+        name: 'add_quote'
+    )]
+    public function newQuote(Request $request, EntityManagerInterface $manager, TranslatorInterface $translator): Response
     {
         $quote = new Quote();
 
-        $form = $this->createForm(QuoteType::class,$quote);
+        $form = $this->createForm(QuoteType::class, $quote);
+
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -61,7 +73,8 @@ class AddEntityController extends AbstractController
 
         return $this->render('./addEntity.twig', [
             'form' => $form,
-            'title' => "Add Quote"
+            'title' => $translator->trans("Add Quote"),
+            "_locale" => $request->getLocale()
         ]);
     }
 }

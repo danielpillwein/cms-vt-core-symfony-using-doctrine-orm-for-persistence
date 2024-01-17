@@ -1,18 +1,19 @@
 {% extends "base.twig" %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="css/home.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/home.css"/>
 {% endblock %}
 
 {% block body %}
     <nav>
-        <a href="http://127.0.0.1:8000/add-movie">Add Movie</a>
-        <a href="http://127.0.0.1:8000/add-quote">Add Quote</a>
+        <a href="{{ path('add_movie') }}">{{ 'Add Movie'|trans }}</a>
+        <a href="{{ path('add_quote') }}">{{ 'Add Quote'|trans }}</a>
+        <a href="http://127.0.0.1:8000/{{ _locale=='en'?'de':'en' }}">{{ 'Switch to German'|trans }}</a>
     </nav>
     <div class="quotes-container">
         {% for quote in quotes %}
             <div class="quote">
-                <a href="http://127.0.0.1:8000/delete-quote/{{ quote.id }}">Delete Quote</a>
+                <a href="http://127.0.0.1:8000/delete-quote/{{ quote.id }}">{{ 'Delete Quote'|trans }}</a>
                 <div class="quote-detail">
                     <div class="quote-text">{{ quote.quote }}</div>
                     <div>{{ quote.character }}</div>

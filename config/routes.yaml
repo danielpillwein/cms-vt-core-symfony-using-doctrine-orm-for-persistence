@@ -1,3 +1,10 @@
+home:
+    path: /{_locale}/
+    controller: App\Controller\MovieQuotesController::index
+    requirements:
+        _locale: en|de
+
+
 controllers:
     resource:
         path: ../src/Controller/
