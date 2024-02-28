@@ -1,14 +1,14 @@
 {% extends "base.twig" %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="../css/home.css"/>
+    <link rel="stylesheet" type="text/css" href="{{  _locale=='en'? '':'../'}}css/home.css"/>
 {% endblock %}
 
 {% block body %}
     <nav>
         <a href="{{ path('add_movie') }}">{{ 'Add Movie'|trans }}</a>
         <a href="{{ path('add_quote') }}">{{ 'Add Quote'|trans }}</a>
-        <a href="http://127.0.0.1:8000/{{ _locale=='en'?'de':'en' }}">{{ 'Switch to German'|trans }}</a>
+        <a href="http://127.0.0.1:8000/{{ _locale=='en'?'de/startseite':'home' }}">{{ 'Switch to German'|trans }}</a>
     </nav>
     <div class="quotes-container">
         {% for quote in quotes %}

@@ -1,14 +1,8 @@
-home:
-    path: /{_locale}/
-    controller: App\Controller\MovieQuotesController::index
-    requirements:
-        _locale: en|de
-
-
 controllers:
     resource:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
-    requirements:
-        _locale: en|de
+    prefix:
+        en: ''
+        de: '/de'
