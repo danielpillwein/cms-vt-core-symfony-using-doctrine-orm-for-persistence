@@ -1,7 +1,7 @@
 {% extends "base.twig" %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{  _locale=='en'? '':'../'}}css/home.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ _locale=='en'? '':'../' }}css/home.css"/>
 {% endblock %}
 
 {% block body %}
@@ -10,19 +10,35 @@
         <a href="{{ path('add_quote') }}">{{ 'Add Quote'|trans }}</a>
         <a href="http://127.0.0.1:8000/{{ _locale=='en'?'de/startseite':'home' }}">{{ 'Switch to German'|trans }}</a>
     </nav>
+    <div class="query-container">
+        <!-- Suchformular hinzufügen -->
+        <form action="http://127.0.0.1:8000/{{ _locale=='en' ? 'home' : 'de/startseite' }}" method="get"
+              class="search-form">
+            <input type="text" name="search" placeholder="{{ 'Search...'|trans }}"/>
+            <button type="submit">{{ 'Search'|trans }}</button>
+        </form>
+        <!-- Button für Zufallssuche hinzufügen -->
+        <div class="random-quote-button">
+            <a href="http://127.0.0.1:8000/{{ _locale=='en' ? 'home' : 'de/startseite' }}?random=true"
+               class="btn-random">{{ 'Random Quote'|trans }}</a>
+        </div>
+    </div>
+
     <div class="quotes-container">
         {% for quote in quotes %}
-            <div class="quote">
-                <a href="http://127.0.0.1:8000/delete-quote/{{ quote.id }}">{{ 'Delete Quote'|trans }}</a>
-                <div class="quote-detail">
-                    <div class="quote-text">{{ quote.quote }}</div>
-                    <div>{{ quote.character }}</div>
+            {% if quote.movie.releaseYear is isClassic %}
+                <div class="quote">
+                    <a href="http://127.0.0.1:8000/delete-quote/{{ quote.id }}">{{ 'Delete Quote'|trans }}</a>
+                    <div class="quote-detail">
+                        <div class="quote-text">{{ quote.quote | formatQuote }}</div>
+                        <div>{{ quote.character }}</div>
+                    </div>
+                    <div class="movie-detail">
+                        <div title="{{ quote.movie.name }}" class="movie-name">{{ quote.movie.name }}</div>
+                        <div>{{ quote.movie.releaseYear }}</div>
+                    </div>
                 </div>
-                <div class="movie-detail">
-                    <div title="{{ quote.movie.name }}" class="movie-name">{{ quote.movie.name }}</div>
-                    <div>{{ quote.movie.releaseYear }}</div>
-                </div>
-            </div>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}

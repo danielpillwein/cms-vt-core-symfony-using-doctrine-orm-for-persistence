@@ -20,6 +20,36 @@ class QuoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Quote::class);
     }
 
+    public function findBySearchTerm($searchTerm)
+    {
+        return $this->createQueryBuilder('quote')
+            ->leftJoin('quote.movie', 'movie')
+            ->where('quote.quote LIKE :searchTerm')
+            ->orWhere('quote.character LIKE :searchTerm')
+            ->orWhere('movie.name LIKE :searchTerm')
+            ->orWhere('movie.releaseYear LIKE :searchTerm')
+            ->setParameter('searchTerm', '%' . $searchTerm . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getRandom()
+    {
+        $qb = $this->createQueryBuilder('quote');
+
+        $count = $qb->select('COUNT(quote.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $randomOffset = mt_rand(0, $count - 1);
+
+        return $qb->select('quote')
+            ->setFirstResult($randomOffset)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findAll(): array
     {
         return $this->createQueryBuilder('quote')

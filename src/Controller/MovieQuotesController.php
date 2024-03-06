@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Quote;
 use App\Repository\QuoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,19 +19,31 @@ class MovieQuotesController extends AbstractController
     ], name: 'home')]
     public function index(Request $request, QuoteRepository $quoteRepository, TranslatorInterface $translator): Response
     {
+        $searchTerm = $request->query->get('search');
+        $randomFlag = $request->query->get('random');
+
+        if ($searchTerm) {
+            $quotes = $quoteRepository->findBySearchTerm($searchTerm);
+        } else {
+            $quotes = $quoteRepository->findAll();
+        }
+
+        if ($randomFlag) {
+            $quotes = $quoteRepository->getRandom();
+        }
+
         return $this->render('./home.twig', [
-            "quotes" => $quoteRepository->findAll(),
+            "quotes" => $quotes,
             "_locale" => $request->getLocale()
         ]);
     }
 
     #[Route(path: [
-        'en' => '/delete-quote/{quoteId}',
-        'de' => '/zitat-loeschen/{quoteId}'
+        'en' => '/delete-quote/{id}',
+        'de' => '/zitat-loeschen/{id}'
     ], name: 'delete-quote')]
-    public function deleteQuote(int $quoteId, EntityManagerInterface $manager, QuoteRepository $quoteRepository): Response
+    public function deleteQuote(Quote $quote, EntityManagerInterface $manager, QuoteRepository $quoteRepository): Response
     {
-        $quote = $quoteRepository->find($quoteId);
 
         if ($quote) {
             $manager->remove($quote);

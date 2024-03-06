@@ -90,3 +90,41 @@ nav a:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.query-container {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+.search-form {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-form>input {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+    outline: none;
+}
+
+.search-form>button,.random-quote-button>a {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.search-form>button:hover,.random-quote-button>a:hover {
+    background-color: #216588;
+}
