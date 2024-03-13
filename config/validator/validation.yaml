@@ -1,0 +1,19 @@
+App\Entity\Movie:
+  properties:
+    name:
+      - App\Validator\Constraints\DoubleLetterCount: ~
+      - Length:
+          min: 10
+    releaseYear:
+      - Type: integer
+      - PositiveOrZero: ~
+App\Entity\Quote:
+  properties:
+    character:
+      - Length:
+          min: 5
+    quote:
+      - Length:
+          min: 7
+    movie:
+      - NotNull: ~

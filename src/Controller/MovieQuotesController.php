@@ -17,7 +17,7 @@ class MovieQuotesController extends AbstractController
         'en' => '/home',
         'de' => '/startseite'
     ], name: 'home')]
-    public function index(Request $request, QuoteRepository $quoteRepository, TranslatorInterface $translator): Response
+    public function index(Request $request, QuoteRepository $quoteRepository): Response
     {
         $searchTerm = $request->query->get('search');
         $randomFlag = $request->query->get('random');

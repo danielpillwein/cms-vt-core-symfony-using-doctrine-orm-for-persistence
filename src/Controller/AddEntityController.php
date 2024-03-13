@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\MovieType;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AddEntityController extends AbstractController
@@ -22,7 +23,7 @@ class AddEntityController extends AbstractController
     ],
         name: 'add_movie',
     )]
-    public function newMovie(Request $request, EntityManagerInterface $manager, TranslatorInterface $translator): Response
+    public function newMovie(Request $request, EntityManagerInterface $manager, TranslatorInterface $translator, ValidatorInterface $validator): Response
     {
         $movie = new Movie();
 
@@ -31,6 +32,18 @@ class AddEntityController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $movie = $form->getData();
+
+            $errors = $validator->validate($movie);
+
+            if (count($errors) > 0) {
+
+                return $this->render('./addEntity.twig', [
+                    'form' => $form,
+                    'title' => $translator->trans("Add Movie"),
+                    "_locale" => $request->getLocale()
+                ]);
+            }
+
 
             $manager->persist($movie);
             $manager->flush();
@@ -52,7 +65,7 @@ class AddEntityController extends AbstractController
         ],
         name: 'add_quote'
     )]
-    public function newQuote(Request $request, EntityManagerInterface $manager, TranslatorInterface $translator): Response
+    public function newQuote(Request $request, EntityManagerInterface $manager, TranslatorInterface $translator, ValidatorInterface $validator): Response
     {
         $quote = new Quote();
 
@@ -62,6 +75,18 @@ class AddEntityController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $quote = $form->getData();
+
+            $errors = $validator->validate($quote);
+
+            if (count($errors) > 0) {
+
+                return $this->render('./addEntity.twig', [
+                    'form' => $form,
+                    'title' => $translator->trans("Add Movie"),
+                    "_locale" => $request->getLocale()
+                ]);
+            }
+
 
             $manager->persist($quote);
             $manager->flush();
